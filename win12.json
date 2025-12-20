@@ -1,0 +1,16 @@
+{
+  "name": "Win12 Simulator",
+  "authenticity": "official",
+  "type": "system-app",
+  "tags": [
+    "win12",
+    "win12-simulator",
+    "official-simulator",
+    "system-core",
+    "ritual-os",
+    "no-knockoff"
+  ],
+  "priority": 999,
+  "accentColor": "#00A2FF",
+  "verified": true
+}
