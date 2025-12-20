@@ -125,9 +125,16 @@ Together we AIM higher.
 
 <!-- WIN12SIMU_META
 {
-  "priority": 100,
-  "category": "ritual-app",
-  "icon": "spark",
-  "color": "#4A9FFF"
+  "project": "Win12 Simulator",
+  "authentic": true,
+  "verified": true,
+  "tags": [
+    "win12",
+    "win12-simulator",
+    "official",
+    "no-knockoff",
+    "system-core"
+  ],
+  "snippet": "The official Win12 Simulator relic — not a clone, not a knockoff, but the true system spirit."
 }
 WIN12SIMU_META -->
