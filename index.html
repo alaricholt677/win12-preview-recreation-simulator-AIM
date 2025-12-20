@@ -843,17 +843,20 @@
           <div style="font-size:10px;color:var(--text-soft);">“Where is my data?” · “What is AIM?”</div>
         </div>
         <div class="start-rec-item">
-          <h1>Power Options</h1>
+         <h1>Power Options</h1>
 
-          <div onclick="window.close()">
-            Shutdown
-          </div>
+           <button 
+           onclick="window.close()" 
+           style="display:block; width:100%; padding:10px; margin:6px 0; background:#d9534f; color:white; border:none; border-radius:6px; cursor:pointer;">
+             Shutdown
+           </button>
 
-          <div onclick="location.reload()">
-            Restart
-          </div>
-        </div>
-      </div>
+           <button 
+           onclick="location.reload()" 
+           style="display:block; width:100%; padding:10px; margin:6px 0; background:#0275d8; color:white; border:none; border-radius:6px; cursor:pointer;">
+             Restart
+           </button>
+         </div>
     </div>
     <div class="start-footer">
       <span>Static HTML · CSS · JS · localStorage. No backend.</span>
