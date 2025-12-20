@@ -66,15 +66,15 @@ It is not a placeholder. It is a shrine of persistence, closure, and legacy.
 | 4 | Paint with tools | ✅ Done |
 | 5 | Notepad | ✅ Done |
 | 6 | Edge viewer | ✅ Done |
-| 7 | Start menu widgets | ✅ Done |
+| 7 | Start menu widgets | ❌ not planned or added|
 | 8 | Feedback hub | ✅ Done |
 | 9 | Copilot mini‑chat | ✅ Done |
-| 10 | Power options | ✅ Done |
-| 11 | Persistent pins + session restore | 🔜 Planned |
-| 12 | Advanced widgets (weather, system stats) | 🔜 Planned |
-| 13 | AI‑powered Copilot expansion | 🔜 Planned |
-| 14 | Multi‑user collaboration | 🔜 Future vision |
-| 15 | Full Win12‑style shell | 🔜 Future vision |
+| 10 | Power options |  ✅ Done|
+| 11 | Persistent pins + session restore |  ❌ not planned or added|
+| 12 | Advanced widgets (weather, system stats) |  ❌ not planned or added |
+| 13 | AI‑powered Copilot expansion | ✅ Done |
+| 14 | Multi‑user collaboration | ✅ Done |
+| 15 | Full Win12‑style shell | ✅ Done|
 
 ---
 
