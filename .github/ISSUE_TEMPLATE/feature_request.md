@@ -25,8 +25,6 @@ Select the category this pull request belongs to:
 
 ## Idea
 Explain the idea in simple terms.  
-What is this pull request trying to add or change?
-
 ---
 
 ## Plan
