@@ -2,19 +2,40 @@
 name: Feature request
 about: Suggest an idea for this project
 title: ''
-labels: ''
-assignees: ''
+labels: bug, enhancement
+assignees: alaricholt677
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+# Win12 Pull Request
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+## Category of this request
+Select the category this pull request belongs to:
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+- [ ] New feature for the OS
+- [ ] Change to existing OS behavior
+- [ ] UI update (taskbar, start, windows, icons)
+- [ ] System fix (logic, functions, modules)
+- [ ] Performance improvement
+- [ ] Cleanup / refactor
+- [ ] Documentation update
+- [ ] Other (explain below)
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+---
+
+## Idea
+Explain the idea in simple terms.  
+What is this pull request trying to add or change?
+
+---
+
+## Plan
+Explain how this idea will be added to the Win12 browser OS.  
+List the steps or logic behind the change.
+
+---
+
+## (Optional) Code if nothing was added by alaricholt677
+Only use this section if the idea or plan has not been added or approved yet.
+
+Paste fallback code here:
