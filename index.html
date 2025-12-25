@@ -592,6 +592,21 @@
       background:linear-gradient(to right,var(--accent),#8f6bff);
     }
 
+   #camera-popup-backdrop{
+      position:fixed;inset:0;background:rgba(0,0,0,0.65);
+      display:none;align-items:center;justify-content:center;
+      z-index:1700;
+      backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    }
+    #camera-popup{
+      width:min(320px,92vw);border-radius:16px;
+      background:rgba(8,10,26,0.98);
+      border:1px solid rgba(255,255,255,0.18);
+      box-shadow:0 20px 50px rgba(0,0,0,0.95);
+      padding:10px 12px;font-size:12px;
+    }
+    #camera-popup-title{font-size:13px;margin-bottom:4px;font-weight:600;}
+    #camera-popup-buttons{margin-top:8px;display:flex;justify-content:flex-end;gap:6px;}
     .dev-banner{
       position:fixed;top:8px;right:12px;
       padding:4px 8px;background:rgba(0,0,0,0.82);
