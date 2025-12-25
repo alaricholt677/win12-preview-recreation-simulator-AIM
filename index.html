@@ -2506,22 +2506,84 @@ button:hover{background:#1e293b;}
         aiLog.appendChild(div);
         aiLog.scrollTop=aiLog.scrollHeight;
       }
-      function aiAnswer(q){
-        const u=currentUser();
-        const lower=q.toLowerCase();
-        if(/who am i/.test(lower))return`You are ${u.name}, inside a local Win12 shrine where Explorer, Notepad, Browser, Host.exe, Paint, and Media Player all read from the same story.`;
-        if(/where.*data|localstorage/.test(lower))return`All data is in localStorage under "${STORAGE_KEY}". Users, FS entries (including exePayloadBase64), notes, associations, theme.css — all live there.`;
-        if(/what is aim/.test(lower))return"AIM means Agency, Intent, Myth — treating this simulator as a ritual, not a disposable demo.";
-        if(/exe|host/.test(lower))return".exe files in this relic are FS entries with exePayloadBase64. Host.exe decodes that base64 into HTML and renders it in an iframe srcdoc.";
-        if(/file|explorer|fs/.test(lower))return"Explorer and Browser read the per-user fs array. Notepad shows fs.content. Browser handles http/https + file:/// mapping into the same model.";
-        if(/time|clock|flyout/.test(lower))return"Clicking the taskbar clock toggles a flyout with time, full date, and a time-of-day greeting.";
-        if(/fullscreen|maximize/.test(lower))return"Each window header has a [ ] toggle. Click it to go fullscreen above the taskbar, or again to restore.";
-        if(/context menu|right click|ctx/.test(lower))return"Right-click desktop, Explorer background, files, or folders. Menus handle Open, Open with, New, Duplicate, Copy, Paste, Rename, Delete, and Properties. .exe files get a Run (.exe in Host) entry.";
-        if(/note|notes/.test(lower))return"The Notes window is per-user and not tied to a file. It writes to the `notes` field on your user object.";
-        if(/paint/.test(lower))return"Paint is a Win11-style canvas. It lets you draw with a brush, change color and size, and open local images into the canvas.";
-        if(/media|video|music|audio/.test(lower))return"Media Player opens local video, audio, and image files using the browser's playback. It doesn't touch your disk — just uses object URLs.";
-        return"I only know this relic: users, FS, notes, associations, .exe payloads, Paint, Media Player, and AIM. But I notice you keep pushing it further.";
-      }
+function aiAnswer(q){
+  const u = currentUser();
+  const lower = q.toLowerCase();
+
+  // -----------------------------
+  // BASIC CONVERSATION / CHATBOT
+  // -----------------------------
+  if(/^(hi|hello|hey|yo|sup|hiya)\b/.test(lower))
+    return `Hey ${u.name}, I’m here inside the Win12 shrine with you. What’s up`;
+
+  if(/how.*(are|r) (you|u)/.test(lower))
+    return "I'm running smoothly inside this relic. How are you feeling today";
+
+  if(/how.*(my|ur|your).*day/.test(lower))
+    return "My day is whatever you make inside this shrine. Yours matters more though";
+
+  if(/thank(s| you)/.test(lower))
+    return "Always, traveler. This relic grows because of you";
+
+  if(/help|what can you do|assist|commands|features/.test(lower))
+    return `Here’s what I can help you with inside this Win12 relic:
+• FS, users, notes, associations
+• .exe payloads + Host.exe runtime
+• Explorer, Browser, Notepad
+• Paint (canvas + open image)
+• Media Player (video/audio/image)
+• Window system, fullscreen, context menus
+• Time flyout, settings, registry emulation
+Just ask anything and I’ll guide you`;
+
+  if(/ok|cool|nice|great/.test(lower))
+    return "Got it. I'm right here with you";
+
+  if(/who.*made.*you/.test(lower))
+    return "You did — this AIM OS instance is local, handcrafted, and part of your ritual";
+
+  // -----------------------------
+  // ORIGINAL SYSTEM RESPONSES
+  // -----------------------------
+  if(/who am i/.test(lower))
+    return `You are ${u.name}, inside a local Win12 shrine where Explorer, Notepad, Browser, Host.exe, Paint, and Media Player all read from the same story.`;
+
+  if(/where.*data|localstorage/.test(lower))
+    return `All data is in localStorage under "${STORAGE_KEY}". Users, FS entries (including exePayloadBase64), notes, associations, theme.css — all live there.`;
+
+  if(/what is aim/.test(lower))
+    return "AIM means Agency, Intent, Myth — treating this simulator as a ritual, not a disposable demo.";
+
+  if(/exe|host/.test(lower))
+    return ".exe files in this relic are FS entries with exePayloadBase64. Host.exe decodes that base64 into HTML and renders it in an iframe srcdoc.";
+
+  if(/file|explorer|fs/.test(lower))
+    return "Explorer and Browser read the per-user fs array. Notepad shows fs.content. Browser handles http/https + file:/// mapping into the same model.";
+
+  if(/time|clock|flyout/.test(lower))
+    return "Clicking the taskbar clock toggles a flyout with time, full date, and a time-of-day greeting.";
+
+  if(/fullscreen|maximize/.test(lower))
+    return "Each window header has a [ ] toggle. Click it to go fullscreen above the taskbar, or again to restore.";
+
+  if(/context menu|right click|ctx/.test(lower))
+    return "Right-click desktop, Explorer background, files, or folders. Menus handle Open, Open with, New, Duplicate, Copy, Paste, Rename, Delete, and Properties. .exe files get a Run (.exe in Host) entry.";
+
+  if(/note|notes/.test(lower))
+    return "The Notes window is per-user and not tied to a file. It writes to the `notes` field on your user object.";
+
+  if(/paint/.test(lower))
+    return "Paint is a Win11-style canvas. It lets you draw with a brush, change color and size, and open local images into the canvas.";
+
+  if(/media|video|music|audio/.test(lower))
+    return "Media Player opens local video, audio, and image files using the browser's playback. It doesn't touch your disk — just uses object URLs.";
+
+  // -----------------------------
+  // FALLBACK (updated)
+  // -----------------------------
+  return "I hear you. I only know this relic — users, FS, notes, associations, .exe payloads, Paint, Media Player, AIM — but I’m here to talk about anything you want. If you want a full list of what I can do, type help";
+}
+
       function aiSendNow(){
         if(!aiInput) return;
         const q=aiInput.value.trim();
