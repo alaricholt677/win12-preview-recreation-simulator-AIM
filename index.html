@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+<link rel="icon" type="image/svg+xml" href="win12-icon.svg">
 <title>Win12 Simulator – Browser OS</title>
 <meta name="description" content="A full Windows 12 style desktop simulator built in HTML, CSS, and JavaScript.">
 <meta name="keywords" content="Windows simulator, Win12, HTML OS, desktop simulation, web OS">
@@ -705,12 +706,7 @@
   <div id="taskbar">
     <div class="taskbar-left">
       <button class="taskbar-button" id="start-button">
-        <svg viewBox="0 0 24 24">
-          <rect x="3" y="3" width="8" height="8" rx="2" fill="#4c8dff"></rect>
-          <rect x="13" y="3" width="8" height="8" rx="2" fill="#94a3ff"></rect>
-          <rect x="3" y="13" width="8" height="8" rx="2" fill="#4ce0b3"></rect>
-          <rect x="13" y="13" width="8" height="8" rx="2" fill="#4c8dff"></rect>
-        </svg>
+      <img src="win12-icon.svg" alt="Win12 Icon" width="24" height="24">
       </button>
       <div class="taskbar-start-label">Start</div>
     </div>
@@ -756,6 +752,7 @@
   <div id="start-backdrop"></div>
   <div id="start-menu">
     <div class="start-header">
+      <img src="win12-icon.svg" alt="Win12 Simulator Icon" width="64" height="64">
       <div class="start-header-left">
         <div class="start-avatar"></div>
         <div>
@@ -1267,6 +1264,7 @@
 
   <!-- Dev banner -->
   <div class="dev-banner" id="dev-banner">
+    <img src="win12-icon.svg" alt="Win12 Icon" width="24" height="24">
     dev: <span>Win12 AIM FS · full apps · full ctx menus · .exe base64 · clock flyout · fullscreen windows · Notes · Paint · Media Player</span>
   </div>
 
