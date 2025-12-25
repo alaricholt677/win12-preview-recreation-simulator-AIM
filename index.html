@@ -783,6 +783,11 @@
             <div>Notepad</div>
             <div class="start-app-sub">View + edit text</div>
           </div>
+          <div class="start-app" data-app="notepad" data-app-name="notepad">
+            <div class="start-app-icon" style="background:linear-gradient(135deg,#ffcc66,#ff9966);"></div>
+            <div>Camera</div>
+            <div class="start-app-sub">Snap + Record</div>
+          </div>
           <div class="start-app" data-app="browser" data-app-name="browser">
             <div class="start-app-icon" style="background:linear-gradient(135deg,#4c8dff,#94a3ff);"></div>
             <div>Browser</div>
@@ -1210,6 +1215,44 @@
     </div>
   </div>
 
+<!-- Win12 Camera -->
+<div class="window" id="window-camera" data-app="camera" data-app-desc="[Win12 Camera] Capture, pause, stop, and edit recordings before export.">
+  <div class="window-header" data-drag-handle>
+    <div class="window-title">
+      <div class="window-title-icon" style="background:conic-gradient(from 220deg,#ff4da6,#9b4dff,#ff66cc,#ff4da6);"></div>
+      <div class="window-title-text">
+        <div class="window-title-main">Camera</div>
+        <div class="window-title-sub">Record and edit before export</div>
+      </div>
+      <div class="window-fullscreen-toggle" title="Toggle fullscreen">[ ]</div>
+      <div class="window-info-icon">(i)</div>
+      <div class="window-info-tooltip"></div>
+    </div>
+    <div class="window-controls">
+      <div class="window-btn minimize"><div class="window-btn-icon"></div></div>
+      <div class="window-btn close"><div class="window-btn-icon"></div></div>
+    </div>
+  </div>
+  <div class="window-body">
+    <div class="camera-view">
+      <video id="camera-preview" autoplay playsinline></video>
+    </div>
+    <div class="camera-controls">
+      <button class="button-small" id="camera-record">Record</button>
+      <button class="button-small" id="camera-pause">Pause</button>
+      <button class="button-small" id="camera-stop">Stop</button>
+    </div>
+    <div class="camera-editor">
+      <h4>Edit Recording</h4>
+      <video id="camera-playback" controls></video>
+      <div class="editor-tools">
+        <button class="button-small" id="camera-trim">Trim</button>
+        <button class="button-small" id="camera-export">Export</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <!-- Context menu -->
   <div class="ctx-menu" id="ctx-menu">
     <div class="ctx-item" data-action="open"><span>Open</span></div>
@@ -1477,6 +1520,69 @@ button:hover{background:#1e293b;}
       const mediaFilename = document.getElementById("media-filename");
 
       let currentExplorerPath = "/desktop";
+const preview = document.getElementById("camera-preview");
+const playback = document.getElementById("camera-playback");
+const recordBtn = document.getElementById("camera-record");
+const pauseBtn = document.getElementById("camera-pause");
+const stopBtn = document.getElementById("camera-stop");
+const trimBtn = document.getElementById("camera-trim");
+const exportBtn = document.getElementById("camera-export");
+
+let mediaRecorder;
+let recordedChunks = [];
+let stream;
+
+async function initCamera() {
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    preview.srcObject = stream;
+  } catch (err) {
+    console.error("Camera init failed:", err);
+  }
+}
+
+recordBtn.addEventListener("click", () => {
+  if (!stream) return;
+  recordedChunks = [];
+  mediaRecorder = new MediaRecorder(stream);
+  mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+  mediaRecorder.onstop = () => {
+    const blob = new Blob(recordedChunks, { type: "video/webm" });
+    playback.src = URL.createObjectURL(blob);
+  };
+  mediaRecorder.start();
+});
+
+pauseBtn.addEventListener("click", () => {
+  if (mediaRecorder && mediaRecorder.state === "recording") {
+    mediaRecorder.pause();
+  } else if (mediaRecorder && mediaRecorder.state === "paused") {
+    mediaRecorder.resume();
+  }
+});
+
+stopBtn.addEventListener("click", () => {
+  if (mediaRecorder && mediaRecorder.state !== "inactive") {
+    mediaRecorder.stop();
+  }
+});
+
+trimBtn.addEventListener("click", () => {
+  // Placeholder: trimming logic would go here
+  alert("Trim feature not yet implemented.");
+});
+
+exportBtn.addEventListener("click", () => {
+  if (recordedChunks.length) {
+    const blob = new Blob(recordedChunks, { type: "video/webm" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "recording.webm";
+    a.click();
+  }
+});
+
+initCamera();
 
       /* clock & flyout */
       function updateClock(){
