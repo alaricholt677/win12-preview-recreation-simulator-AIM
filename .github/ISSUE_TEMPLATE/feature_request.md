@@ -39,3 +39,21 @@ List the steps or logic behind the change.
 Only use this section if the idea or plan has not been added or approved yet.
 
 Paste fallback code here:
+// your code here
+
+---
+
+## Files changed
+List the files you edited:
+
+- 
+- 
+- 
+
+---
+
+## Testing
+- Browser tested:
+- Device:
+- Steps tested:
+- Result:
