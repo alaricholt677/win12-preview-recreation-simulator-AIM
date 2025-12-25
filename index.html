@@ -2343,36 +2343,62 @@ button:hover{background:#1e293b;}
         return{path:root,name};
       }
       function renderFileUrl(url){
-        const u=currentUser();
-        const {path,name}=filePathFromUrl(url);
-        if(!name){
-          const list=u.fs.filter(e=>e.path===path);
-          const container=document.createElement("div");
-          container.style.padding="6px";
-          if(!list.length)container.textContent=`No entries in ${path}.`;
-          else{
-            list.forEach(entry=>{
-              const btn=document.createElement("button");
-              btn.textContent=entry.name+(entry.type==="folder"?" /":"");
-              btn.className="button-small";btn.style.margin="2px 4px 2px 0";
-              btn.addEventListener("click",()=>{
-                const newUrl=url.endsWith("/")?url+entry.name:url+"/"+entry.name;
-                browserAddressEl.value=newUrl;
+        const u = currentUser();
+        const { path, name } = filePathFromUrl(url);
+
+        // -----------------------------
+        // FOLDER VIEW (unchanged)
+        // -----------------------------
+        if (!name) {
+          const list = u.fs.filter(e => e.path === path);
+          const container = document.createElement("div");
+          container.style.padding = "6px";
+
+          if (!list.length) {
+            container.textContent = `No entries in ${path}.`;
+          } else {
+            list.forEach(entry => {
+              const btn = document.createElement("button");
+              btn.textContent = entry.name + (entry.type === "folder" ? " /" : "");
+              btn.className = "button-small";
+              btn.style.margin = "2px 4px 2px 0";
+
+              btn.addEventListener("click", () => {
+                const newUrl = url.endsWith("/") ? url + entry.name : url + "/" + entry.name;
+                browserAddressEl.value = newUrl;
                 goCurrentBrowserTab();
               });
+
               container.appendChild(btn);
             });
           }
+
           browserViewEl.appendChild(container);
-        }else{
-          const entry=u.fs.find(e=>e.path===path&&e.name===name);
-          if(!entry){browserViewEl.textContent=`No such file: ${path}/${name}`;return;}
-          const pre=document.createElement("pre");
-          pre.style.margin="0";pre.style.padding="8px";pre.style.whiteSpace="pre-wrap";pre.style.fontFamily="Cascadia Code, monospace";
-          pre.textContent=entry.content||"(no stored content)";
-          browserViewEl.appendChild(pre);
+          return;
         }
+
+        // -----------------------------
+        // FILE VIEW (updated only here)
+        // -----------------------------
+        const entry = u.fs.find(e => e.path === path && e.name === name);
+        if (!entry) {
+          browserViewEl.textContent = `No such file: ${path}/${name}`;
+          return;
+        }
+
+        // Create iframe to render file content as real HTML
+        const frame = document.createElement("iframe");
+        frame.style.width = "100%";
+        frame.style.height = "100%";
+        frame.style.border = "none";
+        frame.style.background = "white";
+
+        // Render file content directly
+        frame.srcdoc = entry.content || "<h3>(empty file)</h3>";
+
+        browserViewEl.appendChild(frame);
       }
+
       function browserOpenFile(entry){
         const basePath=entry.path.replace(/^\//,"");
         const url=`file:///${basePath}/${entry.name}`;
